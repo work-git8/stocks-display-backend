@@ -177,8 +177,8 @@ const sortByPricing = (stocks, pricing) => {
     return stocks.sort((a, b) => a.price - b.price);
   }
 };
-app.get('/stocks/sort/pricing/:price', (req, res) => {
-  let pricing = req.params.price;
+app.get('/stocks/sort/pricing', (req, res) => {
+  let pricing = req.query.pricing;
   let sortedStocks1 = sortedStocks.slice();
   res.json({ stocks: sortByPricing(sortedStocks1, pricing) });
 });
@@ -191,8 +191,8 @@ const sortByGrowth = (stocks, growth) => {
     return stocks.sort((a, b) => a.price - b.price);
   }
 };
-app.get('/stocks/sort/growth/:grow', (req, res) => {
-  let growth = req.params.grow;
+app.get('/stocks/sort/growth', (req, res) => {
+  let growth = req.query.growth;
   let sortedStocks2 = sortedStocks.slice();
   res.json({ stocks: sortByGrowth(sortedStocks2, growth) });
 });
@@ -201,8 +201,8 @@ app.get('/stocks/sort/growth/:grow', (req, res) => {
 function filterByExchange(stock, exchange) {
   return stock.exchange.toLowerCase() === exchange.toLowerCase();
 }
-app.get('/stocks/filter/exchange/:exch', (req, res) => {
-  let exchange = req.params.exch;
+app.get('/stocks/filter/exchange', (req, res) => {
+  let exchange = req.query.exchange;
   let sortedStocks3 = sortedStocks.slice();
   res.json({
     stocks: sortedStocks3.filter((s) => filterByExchange(s, exchange)),
@@ -213,8 +213,8 @@ app.get('/stocks/filter/exchange/:exch', (req, res) => {
 function filterByIndustry(stock, industry) {
   return stock.industry.toLowerCase() === industry.toLowerCase();
 }
-app.get('/stocks/filter/industry/:ind', (req, res) => {
-  let industry = req.params.ind;
+app.get('/stocks/filter/industry', (req, res) => {
+  let industry = req.query.industry;
   let sortedStocks4 = sortedStocks.slice();
   res.json({
     stocks: sortedStocks4.filter((s) => filterByIndustry(s, industry)),
